@@ -20,7 +20,7 @@
 
 // setInterval(() => {
 //     console.log(new Date())
-// }, 5000)
+// }, 1000)
 
 
 // Aufgabenstellung
@@ -58,20 +58,20 @@
 // if, else if
 // querySelector
 
-let btn = document.getElementById("btn")
+// let btn = document.getElementById("btn")
 
-let time = 100
+// let time = 100
 
-function clickMe() {
-    setInterval(() => {
-        if (time > 0) {
-            time--
-            document.querySelector(".zeit").innerHTML = time + "%"
-        } else {
-            clearInterval(time)
-        }
-    }, 100);
-}
+// function clickMe() {
+//     setInterval(() => {
+//         if (time > 0) {
+//             time--
+//             document.querySelector(".zeit").innerHTML = time + "%"
+//         } else {
+//             clearInterval(time)
+//         }
+//     }, 100);
+// }
 
 
 // Lev2_1_js-vertiefung_BOM_meldung
@@ -89,21 +89,21 @@ function clickMe() {
 // getElementsByClassName()/getElementById()
 // if, else if
 
-let message = document.querySelector(".message")
-let count = document.getElementById("count")
+// let message = document.querySelector(".message")
+// let count = document.getElementById("count")
 
-let number = 3
+// let number = 10
 
-window.onload = setInterval(() => {
-    if (number > 0) {
-        number--
-        count.innerHTML = number
-    } else {
-        clearInterval(number)
-        message.style.opacity = "0"
-    }
+// window.onload = setInterval(() => {
+//     if (number > 0) {
+//         number--
+//         count.innerHTML = number
+//     } else {
+//         clearInterval(number)
+//         message.style.opacity = "0"
+//     }
 
-}, 1000);
+// }, 1000);
 
 
 // CodeFlow Übung lev2_2: Countdown
@@ -117,6 +117,43 @@ window.onload = setInterval(() => {
 // clearInterval()
 // if
 
-setInterval(() => {
-    clearInterval()
-}, 1000);
+let countDown = document.getElementById("time")
+let inputTime = document.getElementById("minutes")
+let seconds = 0
+let start
+
+function startMinCountdown() {
+    let minutes = inputTime.value
+    start = setInterval(() => {
+        countDown.innerHTML = `${minutes}:${seconds}`
+        if (seconds < 10) {
+            countDown.innerHTML = `${minutes}:0${seconds}`
+        }
+        if (minutes < 10) {
+            countDown.innerHTML = `0${minutes}:${seconds}`
+        }
+        if (minutes < 10 && seconds < 10) {
+            countDown.innerHTML = `0${minutes}:0${seconds}`
+        }
+
+
+        if (minutes == 0 && seconds == 0) {
+            clearInterval(start)
+        } else if (seconds == 0) {
+            minutes--
+            seconds = 59
+        } else {
+            seconds--
+        }
+
+    }, 1000);
+
+}
+
+function pauseMinCountdown() {
+    clearInterval(start)
+}
+
+function restartMinCountdown() {
+    window.location.reload();
+}
